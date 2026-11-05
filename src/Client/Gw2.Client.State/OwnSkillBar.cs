@@ -36,7 +36,7 @@ public sealed class OwnSkillBar
             skillbar.InactiveLegendOf(ownAgentId),
             skillbar.SpecializationsOf(ownAgentId),
             skillbar.TraitsOf(ownAgentId).ToArray(),
-            skillbar.BuffSkillsOf(ownAgentId),
+            _world.Buffs.SkillIdsOf(ownAgentId),
             slot => skillbar.SlotPaletteOf(ownAgentId, slot),
             skillbar.ActiveCompanionOf(ownAgentId),
             skill => skillbar.OverriddenSkillOf(ownAgentId, skill));

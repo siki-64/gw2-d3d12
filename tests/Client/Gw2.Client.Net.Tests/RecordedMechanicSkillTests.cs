@@ -46,6 +46,7 @@ public sealed class RecordedMechanicSkillTests
         var ownSkills = new Gw2OwnSkills(palettes, new Gw2Items(reader.ContentIndex, ItemContentLayout.Current), LegendSkillPaletteLayout.Current, ProfessionMechanicPaletteLayout.Current);
         var equipment = new AgentEquipment();
         var skillbar = new OwnSkillbar();
+        var buffs = new AgentBuffs();
         var uses = 0;
         var mismatches = new List<string>();
 
@@ -55,6 +56,7 @@ public sealed class RecordedMechanicSkillTests
             {
                 equipment.Handle(message);
                 skillbar.Handle(message);
+                buffs.Handle(message, 0);
                 continue;
             }
             if (message.MessageId != SkillCommandMessageId || message.Fields[CommandPayloadField].Value is not byte[] payload) continue;
@@ -65,7 +67,7 @@ public sealed class RecordedMechanicSkillTests
             if (equipment.ProfessionOf(agent) is not { } profession) { mismatches.Add($"agent {agent}: no profession"); continue; }
             var (mainHand, offHand) = equipment.ActiveWeaponItemDataIdsOf(agent);
             var state = new OwnSkillState((Profession)profession, mainHand, offHand, skillbar.ProfessionStateOf(agent), skillbar.InactiveLegendOf(agent),
-                skillbar.SpecializationsOf(agent), skillbar.TraitsOf(agent).ToArray(), skillbar.BuffSkillsOf(agent), index => skillbar.SlotPaletteOf(agent, index), skillbar.ActiveCompanionOf(agent), skill => skillbar.OverriddenSkillOf(agent, skill));
+                skillbar.SpecializationsOf(agent), skillbar.TraitsOf(agent).ToArray(), buffs.SkillIdsOf(agent), index => skillbar.SlotPaletteOf(agent, index), skillbar.ActiveCompanionOf(agent), skill => skillbar.OverriddenSkillOf(agent, skill));
             uses++;
             var resolved = ownSkills.MechanicSkill(state, slot - FirstMechanicSlot);
             if (resolved != recorded && !SkillsNotFromThePalettes.Contains(recorded))

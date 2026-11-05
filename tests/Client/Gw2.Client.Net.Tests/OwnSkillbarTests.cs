@@ -17,7 +17,6 @@ public sealed class OwnSkillbarTests
         skillbar.Handle(Message(OwnSkillbar.OwnedCharacter, Value(16), Value(6550)));
         skillbar.Handle(Message(OwnSkillbar.SpecializationBuild, Value(16), new DecodedField(0, true, new List<DecodedField[]> { new[] { Value(18) }, new[] { Value(11) }, new[] { Value(74) } }), new DecodedField(0, true, new List<DecodedField[]> { new[] { Value(1660) }, new[] { Value(1361) } }), Value(0)));
         skillbar.Handle(Message(OwnSkillbar.EquippedLegends, Value(6550), Ids(15, 16), Ids(16, 15)));
-        skillbar.Handle(Message(OwnSkillbar.BuffApply, Value(6550), Value(6550), Value(29275), Value(2811), Value(4294967295), Value(18), Value(1)));
         foreach (var (palette, slot) in new (ulong, ulong)[] { (4572, 0), (4614, 1), (4651, 2), (4564, 3), (4554, 4) })
         {
             skillbar.Handle(Message(OwnSkillbar.SlotPalette, Value(palette), Value(slot), Value(0), Value(16)));
@@ -26,12 +25,9 @@ public sealed class OwnSkillbarTests
         Assert.AreEqual(15u, skillbar.ProfessionStateOf(6550));
         Assert.AreEqual(16u, skillbar.InactiveLegendOf(6550));
         CollectionAssert.AreEqual(new uint[] { 1660, 1361 }, skillbar.TraitsOf(6550).ToArray());
-        CollectionAssert.AreEqual(new uint[] { 29275 }, skillbar.BuffSkillsOf(6550).ToArray());
         skillbar.Handle(Message(OwnSkillbar.LegendSwap, Value(6550), Value(10000), Value(0), Ids(16, 15)));
         skillbar.Handle(Message(OwnSkillbar.ProfessionState, Value(6550), Value(16)));
         Assert.AreEqual(15u, skillbar.InactiveLegendOf(6550));
-        skillbar.Handle(Message(OwnSkillbar.BuffRemoveBySkill, Value(6550), Value(6550), Value(29275)));
-        Assert.AreEqual(0, skillbar.BuffSkillsOf(6550).Count);
         CollectionAssert.AreEqual(new uint[] { 18, 11, 74 }, skillbar.SpecializationsOf(6550).ToArray());
         CollectionAssert.AreEqual(new uint?[] { 4572, 4614, 4651, 4564, 4554 }, Enumerable.Range(0, OwnSkillbar.SlotCount).Select(slot => skillbar.SlotPaletteOf(6550, slot)).ToArray());
     }

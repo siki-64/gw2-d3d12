@@ -13,6 +13,7 @@ public sealed class WorldState
     public AgentActivationSpeeds ActivationSpeeds { get; } = new();
     public AgentWeaponStances WeaponStances { get; } = new();
     public AgentVitals Vitals { get; } = new();
+    public AgentBuffs Buffs { get; } = new();
     public AgentEnergies Energies { get; } = new();
     public AgentProfessionResources ProfessionResources { get; } = new();
     public AgentLifeState LifeState { get; } = new();
@@ -39,6 +40,7 @@ public sealed class WorldState
         ActivationSpeeds.Handle(message);
         WeaponStances.Handle(message);
         Vitals.Handle(message, nowMilliseconds);
+        Buffs.Handle(message, nowMilliseconds);
         Energies.Handle(message, nowMilliseconds);
         ProfessionResources.Handle(message, nowMilliseconds);
         LifeState.Handle(message);

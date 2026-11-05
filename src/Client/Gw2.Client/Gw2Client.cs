@@ -962,7 +962,7 @@ public sealed partial class Gw2Client : Crystal.Game
 
         public byte LocaleState => client._ownLocaleState;
 
-        public bool HasBuff(uint buffDataId, bool onSelf) => onSelf && client._world.Skillbar.BuffSkillsOf(ownAgentId).Contains(buffDataId);
+        public bool HasBuff(uint buffDataId, bool onSelf) => onSelf && client._world.Buffs.SkillIdsOf(ownAgentId).Contains(buffDataId);
 
         public bool HasMovementModifier(uint movementModifierUid) => client._world.ContentFunctions.HasMovementModifier(ownAgentId, movementModifierUid);
 

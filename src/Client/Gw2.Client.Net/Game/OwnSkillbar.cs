@@ -16,9 +16,6 @@ public sealed class OwnSkillbar
     public const int SkillOverride = 0x263;
     public const int EquippedLegends = 0x1ed;
     public const int LegendSwap = 0x1ef;
-    public const int BuffApply = 0x2df;
-    public const int BuffRemoveBySkill = 0x2e2;
-    public const int BuffRemoveByInstance = 0x2e3;
     public const int SlotCount = 5;
     public const uint LandSlotSet = 0;
 
@@ -51,10 +48,6 @@ public sealed class OwnSkillbar
     private const int LegendAgentField = 1;
     private const int EquippedTerrestrialLegendsField = 2;
     private const int SwappedLegendsField = 4;
-    private const int BuffAgentField = 1;
-    private const int BuffSkillField = 3;
-    private const int BuffInstanceField = 4;
-    private const int RemovedBuffKeyField = 3;
 
     private readonly Dictionary<uint, uint> _agentByPlayer = [];
     private readonly Dictionary<uint, uint> _professionStateByAgent = [];
@@ -62,7 +55,6 @@ public sealed class OwnSkillbar
     private readonly Dictionary<(uint Player, uint Slot), uint> _paletteByPlayerSlot = [];
     private readonly Dictionary<uint, uint[]> _traitsByPlayer = [];
     private readonly Dictionary<uint, uint[]> _legendsByAgent = [];
-    private readonly Dictionary<uint, Dictionary<uint, uint>> _buffSkillByInstanceByAgent = [];
     private readonly Dictionary<(uint Agent, uint Slot), uint> _companionByAgentSlot = [];
     private readonly Dictionary<(uint Player, uint Skill), uint> _overrideByPlayerSkill = [];
 
@@ -82,9 +74,6 @@ public sealed class OwnSkillbar
 
     public IReadOnlyList<uint> TraitsOf(uint agentId) =>
         PlayerOf(agentId) is { } player && _traitsByPlayer.TryGetValue(player, out var traits) ? traits : [];
-
-    public IReadOnlyCollection<uint> BuffSkillsOf(uint agentId) =>
-        _buffSkillByInstanceByAgent.TryGetValue(agentId, out var buffs) ? buffs.Values.ToHashSet() : [];
 
     public uint? InactiveLegendOf(uint agentId)
     {
@@ -130,18 +119,6 @@ public sealed class OwnSkillbar
             case LegendSwap:
                 _legendsByAgent[U32(message, LegendAgentField)] = Ids(message, SwappedLegendsField);
                 break;
-            case BuffApply:
-                BuffsOf(U32(message, BuffAgentField))[U32(message, BuffInstanceField)] = U32(message, BuffSkillField);
-                break;
-            case BuffRemoveByInstance:
-                BuffsOf(U32(message, BuffAgentField)).Remove(U32(message, RemovedBuffKeyField));
-                break;
-            case BuffRemoveBySkill:
-                var buffs = BuffsOf(U32(message, BuffAgentField));
-                uint skill = U32(message, RemovedBuffKeyField);
-                foreach (var instance in buffs.Where(buff => buff.Value == skill).Select(buff => buff.Key).ToArray())
-                    buffs.Remove(instance);
-                break;
         }
     }
 
@@ -163,13 +140,6 @@ public sealed class OwnSkillbar
         else
             _traitsByPlayer[player] = traits = (uint[])traits.Clone();
         traits[slot] = trait;
-    }
-
-    private Dictionary<uint, uint> BuffsOf(uint agentId)
-    {
-        if (!_buffSkillByInstanceByAgent.TryGetValue(agentId, out var buffs))
-            _buffSkillByInstanceByAgent[agentId] = buffs = [];
-        return buffs;
     }
 
     private static uint[] Ids(DecodedMessage message, int field) =>
