@@ -1,3 +1,4 @@
+using System.Numerics;
 using Gw2.Client.Net.Game;
 using Gw2.Protocol.MsgPack;
 
@@ -15,6 +16,7 @@ public sealed class WorldState
     public AgentVitals Vitals { get; } = new();
     public AgentBuffs Buffs { get; } = new();
     public AgentMountWardrobe MountWardrobe { get; } = new();
+    public GameMissiles Missiles { get; } = new();
     public AgentEnergies Energies { get; } = new();
     public AgentProfessionResources ProfessionResources { get; } = new();
     public AgentLifeState LifeState { get; } = new();
@@ -30,6 +32,14 @@ public sealed class WorldState
     public AgentKennels Kennels { get; } = new();
     public AgentSkillOrders SkillOrders { get; } = new();
 
+    public void Advance(float elapsedSeconds)
+    {
+        Agents.Advance(elapsedSeconds);
+        Missiles.Advance(elapsedSeconds, AgentPositionOf);
+    }
+
+    private Vector3? AgentPositionOf(uint agentId) => Agents.TryGet(agentId, out var agent) ? agent.PositionInGameUnits : null;
+
     public void Handle(DecodedMessage message, long nowMilliseconds, float defaultRunSpeedInGameUnits)
     {
         Agents.DefaultRunSpeedInGameUnits = defaultRunSpeedInGameUnits;
@@ -43,6 +53,7 @@ public sealed class WorldState
         Vitals.Handle(message, nowMilliseconds);
         Buffs.Handle(message, nowMilliseconds);
         MountWardrobe.Handle(message);
+        Missiles.Handle(message, AgentPositionOf);
         Energies.Handle(message, nowMilliseconds);
         ProfessionResources.Handle(message, nowMilliseconds);
         LifeState.Handle(message);

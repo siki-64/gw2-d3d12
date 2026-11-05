@@ -1328,7 +1328,7 @@ public sealed partial class Gw2Client : Crystal.Game
     {
         var stepStarted = System.Diagnostics.Stopwatch.GetTimestamp();
         _frameElapsedSeconds = elapsedSeconds;
-        _world.Agents.Advance(elapsedSeconds);
+        _world.Advance(elapsedSeconds);
         FollowGameAgents();
         var isUiMouse = _perfOverlay is { WantsMouse: true };
         var ownsCamera = _options.Benchmark is { RecordSeconds: null, Flight: null };
