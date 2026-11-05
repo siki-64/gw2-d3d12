@@ -8,6 +8,7 @@ using Gw2.Dat.Content;
 using Gw2.Client.Net.Keys;
 using Gw2.Formats;
 using Gw2.Protocol.Capture;
+using Gw2.Protocol.MsgPack;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Gw2.Client.Net.Tests;
@@ -47,6 +48,30 @@ public sealed class GameAgentsTests
         var reportedInGameUnits = new Vector3(BitConverter.ToSingle(reported, 0), BitConverter.ToSingle(reported, 4), -BitConverter.ToSingle(reported, 8)) / CollisionUnitsPerGameUnit;
         Assert.IsTrue(Vector3.Distance(own.PositionInGameUnits, reportedInGameUnits) < 1f, $"created at {own.PositionInGameUnits}, reported {reportedInGameUnits}");
         Assert.IsTrue(own.HeightInGameUnits > 2f * own.RadiusInGameUnits, $"height {own.HeightInGameUnits}, radius {own.RadiusInGameUnits}");
+    }
+
+    [TestMethod]
+    public void ThePlacementPutsTheAgentAtTheRecordedPositionAndEndsItsTravel()
+    {
+        var decoded = CaptureDecoding.DecodeAll(RecordedSession.Capture(), RecordedSession.Schemas);
+        var inbound = decoded.FirstOrDefault(result => result.Corpus == "game" && result.Stream.Direction == CaptureRecordKind.Inbound);
+        if (inbound is null) Assert.Inconclusive("the capture holds no game connection");
+        var agents = new GameAgents();
+        var placements = 0;
+        foreach (var message in inbound.Messages)
+        {
+            agents.Handle(message);
+            if (message.MessageId != GameAgents.AgentPlacement) continue;
+            var agentId = (uint)(ulong)message.Fields[1].Value!;
+            if (!agents.TryGet(agentId, out var agent)) continue;
+            placements++;
+            var header = ((DecodedArrayHeader)message.Fields[4].Value!).Header;
+            var placed = new Vector3(BitConverter.ToSingle(header, 0), BitConverter.ToSingle(header, 4), BitConverter.ToSingle(header, 8));
+            Assert.AreEqual(placed, agent.PositionInGameUnits, $"agent {agentId}");
+            Assert.IsNull(agent.TravelDestination, $"agent {agentId}");
+            Assert.AreEqual(Vector3.Zero, agent.VelocityInGameUnits, $"agent {agentId}");
+        }
+        if (placements == 0) Assert.Inconclusive("the capture holds no placement of a known agent");
     }
 
     [TestMethod]

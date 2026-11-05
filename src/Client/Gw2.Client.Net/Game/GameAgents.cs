@@ -85,6 +85,7 @@ public sealed class GameAgents
     public const int AgentStop = 0x21;
     private const int StopMotionField = 4;
     private const int MotionVelocityIndex = 2;
+    public const int AgentPlacement = 0x56;
     public const int AgentPosition = 0x57;
     public const int AgentTravel = 0x3a;
     public const int AgentDestination = 0x40;
@@ -117,6 +118,7 @@ public sealed class GameAgents
     private const float LongestCatchUpSeconds = 1f;
     private const int PositionField = 4;
     private const int PositionVelocityField = 6;
+    private const int PlacementPositionField = 4;
     public const float GameUnitsPerCollisionUnit = 32f;
     private const int TravelMotionField = 6;
     private const int TravelSpeedField = 7;
@@ -230,6 +232,9 @@ public sealed class GameAgents
             case AgentPosition when message.Fields[PositionField].Value is byte[] position && _agents.TryGetValue(AgentId(message), out var positioned):
                 var syncedVelocity = message.Fields.Count > PositionVelocityField && message.Fields[PositionVelocityField].Value is byte[] { Length: >= 12 } velocityLanes ? GameUnitsOf(velocityLanes) : Vector3.Zero;
                 _agents[positioned.AgentId] = positioned with { PositionInGameUnits = GameUnitsOf(position) + syncedVelocity * CatchUpSecondsOf(message), VelocityInGameUnits = syncedVelocity, TravelDestination = null };
+                break;
+            case AgentPlacement when message.Fields[PlacementPositionField].Value is DecodedArrayHeader && _agents.TryGetValue(AgentId(message), out var placed):
+                _agents[placed.AgentId] = placed with { PositionInGameUnits = PositionOf(message.Fields[PlacementPositionField]), VelocityInGameUnits = Vector3.Zero, TravelDestination = null };
                 break;
             case AgentTravel when _agents.TryGetValue(AgentId(message), out var traveller):
                 var travelPosition = message.Fields[TravelMotionField].Value is DecodedField[] { Length: > 0 } travelMotion && travelMotion[0].Value is byte[] start ? GameUnitsOf(start) : traveller.PositionInGameUnits;
