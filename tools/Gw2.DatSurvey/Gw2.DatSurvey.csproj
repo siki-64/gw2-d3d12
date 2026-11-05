@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Client\Gw2.Client.Model\Gw2.Client.Model.csproj" />
+    <ProjectReference Include="..\..\src\Dat\Gw2.Dat.Content\Gw2.Dat.Content.csproj" />
+    <ProjectReference Include="..\..\src\Dat\Gw2.Dat.Shaders\Gw2.Dat.Shaders.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Direct3D.DXC" GeneratePathProperty="true" ExcludeAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="$(PkgMicrosoft_Direct3D_DXC)/build/native/bin/x64/dxc.exe" Link="dxc/dxc.exe" CopyToOutputDirectory="PreserveNewest" Visible="false" />
+    <None Include="$(PkgMicrosoft_Direct3D_DXC)/build/native/bin/x64/dxcompiler.dll" Link="dxc/dxcompiler.dll" CopyToOutputDirectory="PreserveNewest" Visible="false" />
+    <None Include="$(PkgMicrosoft_Direct3D_DXC)/build/native/bin/x64/dxil.dll" Link="dxc/dxil.dll" CopyToOutputDirectory="PreserveNewest" Visible="false" />
+  </ItemGroup>
+</Project>

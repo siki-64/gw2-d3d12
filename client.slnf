@@ -1,0 +1,32 @@
+{
+  "solution": {
+    "path": "gw2.slnx",
+    "projects": [
+      "src\\Dat\\Gw2.Dat.Identity\\Gw2.Dat.Identity.csproj",
+      "src\\Dat\\Gw2.Dat.Archive\\Gw2.Dat.Archive.csproj",
+      "src\\Dat\\Gw2.Dat.Content\\Gw2.Dat.Content.csproj",
+      "src\\Dat\\Gw2.Dat.Shaders\\Gw2.Dat.Shaders.csproj",
+      "src\\Protocol\\Gw2.Protocol\\Gw2.Protocol.csproj",
+      "src\\Client\\Gw2.Client\\Gw2.Client.csproj",
+      "src\\Client\\Gw2.Client.Net\\Gw2.Client.Net.csproj",
+      "src\\Client\\Gw2.Client.State\\Gw2.Client.State.csproj",
+      "src\\Client\\Gw2.Client.World\\Gw2.Client.World.csproj",
+      "src\\Client\\Gw2.Client.Scene\\Gw2.Client.Scene.csproj",
+      "src\\Client\\Gw2.Client.Model\\Gw2.Client.Model.csproj",
+      "src\\Client\\Gw2.Client.Content\\Gw2.Client.Content.csproj",
+      "src\\Client\\Gw2.Client.Graphics\\Gw2.Client.Graphics.csproj",
+      "src\\Client\\Gw2.Client.Ui\\Gw2.Client.Ui.csproj",
+      "src\\Client\\Gw2.Client.Frames\\Gw2.Client.Frames.csproj",
+      "tests\\Client\\Gw2.Client.Frames.Tests\\Gw2.Client.Frames.Tests.csproj",
+      "src\\Formats\\Gw2.Formats\\Gw2.Formats.csproj",
+      "tests\\Formats\\Gw2.Formats.Tests\\Gw2.Formats.Tests.csproj",
+      "tools\\Gw2.DatSurvey\\Gw2.DatSurvey.csproj",
+      "tools\\Gw2.LiveLogin\\Gw2.LiveLogin.csproj",
+      "tests\\Gw2.DatSurvey.Tests\\Gw2.DatSurvey.Tests.csproj",
+      "tests\\Client\\Gw2.Client.Net.Tests\\Gw2.Client.Net.Tests.csproj",
+      "tests\\Client\\Gw2.Client.Scene.Tests\\Gw2.Client.Scene.Tests.csproj",
+      "tests\\Client\\Gw2.Client.Model.Tests\\Gw2.Client.Model.Tests.csproj",
+      "tests\\Client\\Gw2.Client.Graphics.Tests\\Gw2.Client.Graphics.Tests.csproj"
+    ]
+  }
+}

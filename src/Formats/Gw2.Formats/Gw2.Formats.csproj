@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <IsPackable>false</IsPackable>
+    <IsAotCompatible>true</IsAotCompatible>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="Gw2.Dat.Archive" />
+    <InternalsVisibleTo Include="Gw2.Dat.Content" />
+    <InternalsVisibleTo Include="Gw2.Exe.Objects" />
+    <InternalsVisibleTo Include="Gw2.Protocol" />
+    <InternalsVisibleTo Include="Gw2.Exe.Protocol.Tests" />
+    <InternalsVisibleTo Include="Gw2.Exe.Routines" />
+    <InternalsVisibleTo Include="Gw2.Formats.Tests" />
+    <InternalsVisibleTo Include="Gw2.Exe.Routines.Tests" />
+    <InternalsVisibleTo Include="Gw2.DatSurvey.Tests" />
+    <InternalsVisibleTo Include="Gw2.Client" />
+    <InternalsVisibleTo Include="Gw2.Client.Model" />
+    <InternalsVisibleTo Include="Gw2.Client.Graphics" />
+    <InternalsVisibleTo Include="Gw2.Client.Scene" />
+    <InternalsVisibleTo Include="Gw2.Client.Model.Tests" />
+    <InternalsVisibleTo Include="Gw2.DatSurvey" />
+  </ItemGroup>
+</Project>

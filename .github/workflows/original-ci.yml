@@ -1,0 +1,77 @@
+﻿name: Original CI
+
+on:
+  push:
+    paths:
+      - 'docs/**'
+      - 'tools/re/**'
+      - 'src/**'
+      - 'gw2-research/**'
+      - 'tools/gw2re.ps1'
+      - 'tests/**'
+      - 'tools/**'
+      - 'client.slnf'
+      - 'gw2.slnx'
+      - '.github/workflows/original-ci.yml'
+  pull_request:
+    paths:
+      - 'docs/**'
+      - 'tools/re/**'
+      - 'src/**'
+      - 'gw2-research/**'
+      - 'tools/gw2re.ps1'
+      - 'tests/**'
+      - 'tools/**'
+      - 'client.slnf'
+      - 'gw2.slnx'
+      - '.github/workflows/original-ci.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: windows-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          token: ${{ secrets.SUBMODULE_TOKEN }}
+
+      - name: Set up .NET 10
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.400
+
+      - name: Build original libraries
+        run: dotnet build src/Dat/Gw2.Dat.Content/Gw2.Dat.Content.csproj -c Release -m:1 -v:minimal
+
+      - name: Check object layouts
+        run: python tools/re/CheckLayouts.py
+
+      - name: Check layout references in docs and client mirrors
+        run: python tools/re/CheckLayoutReferences.py
+
+      - name: Check repository paths and doc links
+        run: python tools/re/CheckRepositoryPaths.py
+
+  client-without-research:
+    runs-on: windows-latest
+
+    steps:
+      - name: Check out repository without the research submodule
+        uses: actions/checkout@v4
+
+      - name: Check out the engine submodule
+        run: git submodule update --init --recursive engine
+
+      - name: Set up .NET 10
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.400
+
+      - name: Build the client, its tests and shipped tools
+        run: dotnet build client.slnf -c Release -v:minimal

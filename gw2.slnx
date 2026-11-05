@@ -1,0 +1,60 @@
+﻿<Solution>
+  <!-- Dat: identify, access, decode into content objects -->
+  <Project Path="src/Dat/Gw2.Dat.Identity/Gw2.Dat.Identity.csproj" />
+  <Project Path="src/Dat/Gw2.Dat.Archive/Gw2.Dat.Archive.csproj" />
+  <Project Path="src/Dat/Gw2.Dat.Content/Gw2.Dat.Content.csproj" />
+  <Project Path="src/Dat/Gw2.Dat.Shaders/Gw2.Dat.Shaders.csproj" />
+
+  <!-- Protocol: framing, sessions, message schemas -->
+  <Project Path="src/Protocol/Gw2.Protocol/Gw2.Protocol.csproj" />
+
+  <!-- Research (gw2-research): handlers, world state objects, exe routines -->
+  <Project Path="gw2-research/src/Gw2.Exe.Handlers/Gw2.Exe.Handlers.csproj" />
+  <Project Path="gw2-research/src/Gw2.Exe.Objects/Gw2.Exe.Objects.csproj" />
+  <Project Path="gw2-research/src/Gw2.Exe.Routines/Gw2.Exe.Routines.csproj" />
+  <Project Path="gw2-research/src/Gw2.Exe.Layout.Generator/Gw2.Exe.Layout.Generator.csproj" />
+  <Project Path="gw2-research/src/Gw2.Exe.Live/Gw2.Exe.Live.csproj" />
+
+  <!-- Client: the remake, from interpretation onwards -->
+  <Project Path="src/Client/Gw2.Client/Gw2.Client.csproj" />
+  <Project Path="src/Client/Gw2.Client.Net/Gw2.Client.Net.csproj" />
+  <Project Path="src/Client/Gw2.Client.State/Gw2.Client.State.csproj" />
+  <Project Path="src/Client/Gw2.Client.World/Gw2.Client.World.csproj" />
+  <Project Path="src/Client/Gw2.Client.Scene/Gw2.Client.Scene.csproj" />
+  <Project Path="src/Client/Gw2.Client.Model/Gw2.Client.Model.csproj" />
+  <Project Path="src/Client/Gw2.Client.Content/Gw2.Client.Content.csproj" />
+  <Project Path="src/Client/Gw2.Client.Graphics/Gw2.Client.Graphics.csproj" />
+  <Project Path="src/Client/Gw2.Client.Ui/Gw2.Client.Ui.csproj" />
+  <Project Path="src/Client/Gw2.Client.Frames/Gw2.Client.Frames.csproj" />
+
+  <Folder Name="/src/" />
+  <Folder Name="/src/Dat/" />
+  <Folder Name="/src/Formats/">
+    <Project Path="src/Formats/Gw2.Formats/Gw2.Formats.csproj" />
+  </Folder>
+  <Folder Name="/tests/" />
+  <Folder Name="/tests/Formats/">
+    <Project Path="tests/Formats/Gw2.Formats.Tests/Gw2.Formats.Tests.csproj" />
+  </Folder>
+
+  <!-- Tools -->
+  <Project Path="tools/Gw2.DatSurvey/Gw2.DatSurvey.csproj" />
+  <Project Path="tools/Gw2.PhysicsReplay/Gw2.PhysicsReplay.csproj" />
+  <Project Path="tools/Gw2.LiveMemory/Gw2.LiveMemory.csproj" />
+  <Project Path="tools/Gw2.LiveLogin/Gw2.LiveLogin.csproj" />
+
+  <!-- Tests -->
+  <Project Path="tests/Gw2.DatSurvey.Tests/Gw2.DatSurvey.Tests.csproj" />
+  <Project Path="gw2-research/tests/Gw2.Exe.Protocol.Tests/Gw2.Exe.Protocol.Tests.csproj" />
+  <Project Path="gw2-research/tests/Gw2.Exe.Handlers.Tests/Gw2.Exe.Handlers.Tests.csproj" />
+  <Project Path="gw2-research/tests/Gw2.Exe.Objects.Tests/Gw2.Exe.Objects.Tests.csproj" />
+  <Project Path="gw2-research/tests/Gw2.Exe.Routines.Tests/Gw2.Exe.Routines.Tests.csproj" />
+  <Project Path="gw2-research/tests/Gw2.Exe.Layout.Generator.Tests/Gw2.Exe.Layout.Generator.Tests.csproj" />
+  <Project Path="gw2-research/tests/Gw2.Exe.Live.Tests/Gw2.Exe.Live.Tests.csproj" />
+  <Project Path="gw2-research/tests/Gw2.Exe.ContentIndex.Tests/Gw2.Exe.ContentIndex.Tests.csproj" />
+  <Project Path="tests/Client/Gw2.Client.Net.Tests/Gw2.Client.Net.Tests.csproj" />
+  <Project Path="tests/Client/Gw2.Client.Scene.Tests/Gw2.Client.Scene.Tests.csproj" />
+  <Project Path="tests/Client/Gw2.Client.Frames.Tests/Gw2.Client.Frames.Tests.csproj" />
+  <Project Path="tests/Client/Gw2.Client.Model.Tests/Gw2.Client.Model.Tests.csproj" />
+  <Project Path="tests/Client/Gw2.Client.Graphics.Tests/Gw2.Client.Graphics.Tests.csproj" />
+</Solution>

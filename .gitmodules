@@ -1,0 +1,6 @@
+[submodule "engine"]
+	path = engine
+	url = https://github.com/siki-64/Crystal.git
+[submodule "gw2-research"]
+	path = gw2-research
+	url = https://github.com/siki-64/gw2-research.git

@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <IsPackable>false</IsPackable>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <PublishAot>true</PublishAot>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Gw2.Client.Scene\Gw2.Client.Scene.csproj" />
+    <ProjectReference Include="..\Gw2.Client.World\Gw2.Client.World.csproj" />
+    <ProjectReference Include="..\Gw2.Client.State\Gw2.Client.State.csproj" />
+    <ProjectReference Include="..\Gw2.Client.Graphics\Gw2.Client.Graphics.csproj" />
+    <ProjectReference Include="..\Gw2.Client.Ui\Gw2.Client.Ui.csproj" />
+    <ProjectReference Include="..\Gw2.Client.Frames\Gw2.Client.Frames.csproj" />
+    <ProjectReference Include="$(CrystalRoot)src\Crystal.Framework\Crystal.Framework.csproj" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,7 @@
+ChCliContext_ResolveCharacter: this, characterId
+AgApi_ResolveAgent: agentId
+AgWorld_QueueCommand: this, unused, agentId, commandTime, command
+sub_14102FFB0: queue, worldTime, commandTime
+ItCliContext_ReportItem: this, report, itemId
+AgUtil_ReadMotion: this, source, motion
+CnContext_GetType23: this, dataId

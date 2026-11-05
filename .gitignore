@@ -1,0 +1,39 @@
+﻿# Shared build output. These patterns match at any depth.
+bin/
+obj/
+.vs/
+.vscode/
+TestResults/
+*.trx
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# OS noise
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Private inputs and generated evidence are never committed. tools/gw2re.ps1 resolves
+# its paths relative to the repository root.
+/artifacts/
+/artifacts/ida-exports/
+/artifacts/manifests/
+/captures/local/
+*.memdump
+*.anchor-export.json
+*.layout-anchors.c
+*.prop-context.c
+*.pcap
+*.pcapng
+
+/tools/ida/layout_types.til
+
+# Python bytecode from the offline reverse-engineering tools.
+__pycache__/
+*.pyc
+
+# The game archive file only. Not a bare `Gw2.dat` pattern, which would also
+# match the Gw2.Dat decoder source directory on case-insensitive filesystems.
+/Gw2.dat

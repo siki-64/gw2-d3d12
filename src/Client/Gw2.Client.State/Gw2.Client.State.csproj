@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Gw2.Client.Net\Gw2.Client.Net.csproj" />
+    <ProjectReference Include="..\..\Dat\Gw2.Dat.Content\Gw2.Dat.Content.csproj" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,17 @@
+bp gw2-64.exe:0+10DFE80
+SetBreakpointName gw2-64.exe:0+10DFE80, text_key
+SetBreakpointCondition gw2-64.exe:0+10DFE80, 0
+SetBreakpointLogCondition gw2-64.exe:0+10DFE80, "qword:[rsp+28]!=0"
+SetBreakpointLog gw2-64.exe:0+10DFE80, "KEY	text	{x:r8d}	{x:qword:[rsp+28]}"
+bp gw2-64.exe:0+10E6CC1
+SetBreakpointName gw2-64.exe:0+10E6CC1, text_key_batch
+SetBreakpointCondition gw2-64.exe:0+10E6CC1, 0
+SetBreakpointLog gw2-64.exe:0+10E6CC1, "KEY	text	{x:qword:[rsi]&0xFFFFFFFF}	{x:r14}	batch"
+bp gw2-64.exe:0+10DBDE0
+SetBreakpointName gw2-64.exe:0+10DBDE0, text_key_single
+SetBreakpointCondition gw2-64.exe:0+10DBDE0, 0
+SetBreakpointLog gw2-64.exe:0+10DBDE0, "KEY	text	{x:ecx}	{x:rdx}"
+bp gw2-64.exe:0+D8B972
+SetBreakpointName gw2-64.exe:0+D8B972, asset_key
+SetBreakpointCondition gw2-64.exe:0+D8B972, 0
+SetBreakpointLog gw2-64.exe:0+D8B972, "KEY	asset{d:dword:[rsp+20]}	{x:dword:[rsp+24]}	{x:r8}"

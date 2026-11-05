@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <IsAotCompatible>true</IsAotCompatible>
+  </PropertyGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="Gw2.Dat.Content" />
+    <InternalsVisibleTo Include="Gw2.DatSurvey.Tests" />
+    <InternalsVisibleTo Include="Gw2.Client.Model.Tests" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Formats\Gw2.Formats\Gw2.Formats.csproj" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <IsPackable>false</IsPackable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Gw2.Client.Scene\Gw2.Client.Scene.csproj" />
+    <ProjectReference Include="..\Gw2.Client.Graphics\Gw2.Client.Graphics.csproj" />
+    <ProjectReference Include="..\Gw2.Client.Net\Gw2.Client.Net.csproj" />
+    <ProjectReference Include="$(CrystalRoot)src\Crystal.ImGui\Crystal.ImGui.csproj" />
+  </ItemGroup>
+</Project>

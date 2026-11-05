@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <IsAotCompatible>true</IsAotCompatible>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Gw2.Dat.Archive\Gw2.Dat.Archive.csproj" />
+    <ProjectReference Include="..\Gw2.Dat.Identity\Gw2.Dat.Identity.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="npc-models.json" LogicalName="Gw2.Dat.gw2-npc-models.json" />
+    <InternalsVisibleTo Include="Gw2.DatSurvey.Tests" />
+    <InternalsVisibleTo Include="Gw2.Client.Model.Tests" />
+  </ItemGroup>
+</Project>

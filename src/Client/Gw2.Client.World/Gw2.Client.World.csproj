@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <IsPackable>false</IsPackable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="version" />
+    <InternalsVisibleTo Include="Gw2.Exe.ContentIndex.Tests" />
+    <ProjectReference Include="..\Gw2.Client.Model\Gw2.Client.Model.csproj" />
+  </ItemGroup>
+</Project>

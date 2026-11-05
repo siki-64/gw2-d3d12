@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <IsPackable>false</IsPackable>
+    <CrystalEmbedShaders>true</CrystalEmbedShaders>
+    <CrystalRuntimeShaderCompiler>true</CrystalRuntimeShaderCompiler>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Gw2.Client.Model\Gw2.Client.Model.csproj" />
+    <ProjectReference Include="..\..\Dat\Gw2.Dat.Shaders\Gw2.Dat.Shaders.csproj" />
+    <ProjectReference Include="$(CrystalRoot)src\Crystal.Framework\Crystal.Framework.csproj" />
+  </ItemGroup>
+  <ItemGroup Label="Awaiting the Crystal graphics port">
+  </ItemGroup>
+
+  <Import Project="$(CrystalRoot)src\Crystal.Framework\build\Crystal.Shaders.targets" />
+</Project>

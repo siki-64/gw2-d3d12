@@ -1,0 +1,11 @@
+{
+  "format": "gw2-npc-models-v1",
+  "description": "Model content ids of named NPCs, used as stand-in character models. One per base race is kept as a placeholder set.",
+  "npcs": [
+    { "name": "Logan Thackeray", "race": "Human",  "modelId": 51442,   "modelIdHex": "0x0000C8F2" },
+    { "name": "Zojja",           "race": "Asura",  "modelId": 51429,   "modelIdHex": "0x0000C8E5" },
+    { "name": "Caithe",          "race": "Sylvari", "modelId": 2138086, "modelIdHex": "0x00209FE6" },
+    { "name": "Rytlock Brimstone", "race": "Charr", "modelId": 1893434, "modelIdHex": "0x001CE43A" },
+    { "name": "Braham Eirsson",  "race": "Norn",   "modelId": 2138140, "modelIdHex": "0x0020A01C" }
+  ]
+}
